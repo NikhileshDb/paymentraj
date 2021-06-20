@@ -152,3 +152,8 @@ CORS_ALLOW_HEADERS = [
 
 #CORS HEADERS
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+import os
+
+STATIC_ROOT = os.path.join('staticfiles')
