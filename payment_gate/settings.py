@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ret*l!%a1xbphgs!v%xt2cj4hfgr=-@v_*5s5!7$7y7n6qptbg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rajpaytest.herokuapp.com','127.0.0.1' ]
+ALLOWED_HOSTS = ['paymentraj.herokuapp.com','127.0.0.1' ]
 
 
 # Application definition
