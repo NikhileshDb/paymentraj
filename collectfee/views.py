@@ -4,6 +4,7 @@ from rest_framework.response import Response
 # Create your views here.
 from rest_framework.decorators import api_view
 from rest_framework import status
+from . models import *
 
 stripe.api_key = 'sk_test_51B8dmzKYbyr1xLhvvWluiihZYPwNoQuzQbUMEaywd91dQ0q1hFJ7SdYHc2uxEis3i8nIZPeutsBzjqqHyRNLTDR8009F1BbuPH'
 
@@ -156,5 +157,12 @@ def handle_payment_success(request):
 
 
 
+
+def home(request):
+    payments = Order.objects.all()
+    context = {
+        'payments': payments
+    }
+    return render(request, 'index.html', context)
 
 
