@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -155,9 +156,8 @@ CORS_ALLOW_HEADERS = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-import os
 
-STATIC_URL = '/static/'
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
