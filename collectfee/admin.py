@@ -8,4 +8,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_product', 'order_amount', 'order_payment_id', 'isPaid', 'order_date')
 
 
+admin.site.register(Order)
+
+
 
