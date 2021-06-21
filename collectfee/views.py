@@ -52,6 +52,7 @@ def save_stripe_info(request):
 ###########################################################################################################################
 #RazorPay Start
 ###########################################################################################################################
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Order
 from .serailizers import OrderSerializer
@@ -99,11 +100,12 @@ def start_payment(request):
     return Response(data)
 
 
+@api_view(['POST'])
 def handle_payment_success(request):
     # request.data is coming from the frontend
 
     res = json.loads(request.data["response"])
-
+    print(res)
     """res will be:
     {'razorpay_payment_id': 'pay_G3NivgSZLx7I9e', 
     'razorpay_order_id': 'order_G3NhfSWWh5UfjQ', 
