@@ -56,7 +56,7 @@ def save_stripe_info(request):
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Order
-from .serailizers import OrderSerializer
+from .serailizers import OrderSerializer, ApplicationSerializer
 import json
 
 import environ
@@ -166,3 +166,150 @@ def home(request):
     return render(request, 'index.html', context)
 
 
+# from firebase import firebase
+
+# firebase = firebase.FirebaseApplication('https://rajarshi-8c7cc-default-rtdb.asia-southeast1.firebasedatabase.app/', None)
+# data = {'Name': 'Vivek',
+#         'RollNo': 1,
+#         'Percentage': 76.02}
+# # result = firebase.post('user/', data)
+
+# # print(result)
+
+
+@api_view(['POST'])
+def api_create_application(request):
+    if request.method != 'POST':
+        comment = {'invalid': 'Invalid Methode'}
+        return Response(comment, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        FirstName = request.data.get['firstName']
+        MiddleName = request.data.get['middleName']
+        LastName = request.data.get['lastName']
+        Aadhaar = request.data.get['aadhaar']
+        Martial = request.data.get['martial']
+        Mobile = request.data.get['mobile']
+        Email = request.data.get['email']
+        MotherName = request.data.get['motherName']
+        FatherName = request.data.get['fatherName']
+        AnnualIncome = request.data.get['annualIncome']
+        AnyOtherUni = request.data.get['anyotheruni']
+
+        #Addresses
+        Address = request.data.get['address']
+        Pincode = request.data.get['pincode ']
+        Category = request.data.get['category']
+        Minority = request.data.get['minority']
+        State = request.data.get['state']
+        City = request.data.get['city']
+        DateOfBirth = request.data.get['dob']
+        Nationality = request.data.get['nationality']
+
+        #Extra Details
+        PayingGuest = request.data.get['payingguest']
+        Transport = request.data.get['transport']
+
+        #Sunjects
+        Elective1 = request.data.get['elective1']
+        Elective2 = request.data.get['elective2']
+        Elective3 = request.data.get['elective3']
+
+        Preference1 = request.data.get['preference1']
+        Preference2 = request.data.get['preference2']
+        Preference3 = request.data.get['preference3']
+
+        Employment = request.data.get['employment']
+
+        FullMarks1 = request.data.get['fullmarks1']
+        FullMarks2 = request.data.get['fullmarks2']
+        FullMarks3 = request.data.get['fullmarks3']
+        FullMarks4 = request.data.get['fullmarks4']
+        FullMarks5 = request.data.get['fullmarks5']
+        FullMarks6 = request.data.get['fullmarks6']
+
+        MarkObtain1 = request.data.get['markObtain1']
+        MarkObtain2 = request.data.get['markObtain2']
+        MarkObtain3 = request.data.get['markObtain3']
+        MarkObtain4 = request.data.get['markObtain4']
+        MarkObtain5 = request.data.get['markObtain5']
+        MarkObtain6 = request.data.get['markObtain6']
+
+        Grade1 = request.data.get['grade1']
+        Grade2 = request.data.get['grade2']
+        Grade3 = request.data.get['grade3']
+        Grade4 = request.data.get['grade4']
+        Grade5 = request.data.get['grade5']
+        Grade6 = request.data.get['grade6']
+
+        Percentage = request.data.get['percentage']
+
+        try:
+            application = ApplicationSerializer(
+                FirstName = FirstName,
+                MiddleName = MiddleName,
+                LastName = LastName,
+                Aadhaar = Aadhaar,
+                Martial = Martial,
+                Mobile = Mobile,
+                Email = Email,
+                MotherName = MotherName,
+                FatherName = FatherName,
+                AnnualIncome = AnnualIncome,
+                AnyOtherUni = AnyOtherUni,
+                #Address
+                Address = Address,
+                Pincode = Pincode,
+                Category = Category,
+                Minority = Minority,
+                State = State,
+                City = City,
+                DateOfBirth = DateOfBirth,
+                Nationality = Nationality,
+                #ExtraDetails
+                Elective1 = Elective1,
+                Elective2 = Elective2,
+                Elective3 = Elective3,
+                Preference1 = Preference1,
+                Preference2 = Preference2,
+                Preference3 = Preference3,
+
+                Employment = Employment,
+                FullMarks1 = FullMarks1,
+                FullMarks2 = FullMarks2,
+                FullMarks3 = FullMarks3,
+                FullMarks4 = FullMarks4,
+                FullMarks5 = FullMarks5,
+                FullMarks6 = FullMarks6,
+
+                MarkObtain1 = MarkObtain1,
+                MarkObtain2 = MarkObtain2,
+                MarkObtain3 = MarkObtain3,
+                MarkObtain4 = MarkObtain4,
+                MarkObtain5 = MarkObtain5,
+                MarkObtain6 = MarkObtain6,
+
+                Grade1 = Grade1,
+                Grade2 = Grade2,
+                Grade3 = Grade3,
+                Grade4 = Grade4,
+                Grade5 = Grade5,
+                Grade6 = Grade6,
+                Percentage = Percentage,
+            )
+            application.save()
+            comment = {
+                'Application Saved' : 'All ok'
+            }
+            Response(comment, status=status.)
+
+        except:
+            comment = {
+                'Invalid': 'Not Saved In a Model'
+            }
+            return Response(comment, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def viewApplications(request):
+    application = ApplicationForm.objects.all()
+    serializer = ApplicationSerializer(application, many=True)
+    return Response(serializer.data)
