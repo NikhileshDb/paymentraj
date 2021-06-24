@@ -9,5 +9,5 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(ApplicationForm)
 class ApplicationFormAdmin(admin.ModelAdmin):
-    list_display = ['id']
+    list_display = ['id', 'firstName', 'lastName', 'mobile', 'email']
 
