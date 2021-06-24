@@ -300,7 +300,7 @@ def api_create_application(request):
             comment = {
                 'Application Saved' : 'All ok'
             }
-            Response(comment, status=status.)
+            Response(comment, status=status.HTTP_201_CREATED)
 
         except:
             comment = {
