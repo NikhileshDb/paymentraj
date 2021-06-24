@@ -10,5 +10,5 @@ urlpatterns = [
     path('', home, name="home"),
     # path('firetest/', fireTest, name="firetest"),
     path('api/application/', api_create_application),
-    path('api/appicationlist/', viewApplications),
+    path('api/applicationlist/', viewApplications),
 ]
