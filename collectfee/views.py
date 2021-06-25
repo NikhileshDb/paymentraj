@@ -277,7 +277,7 @@ def sendmail(request,pk):
         'New Application for Admission',
         template,
         settings.EMAIL_HOST_USER,
-        ['nikhilesh.debbarma062@gmail.com'],
+        ['nikhilesh.debbarma062@gmail.com', 'mr.saumyadeepsarkar@gmail.com', 'contact@rajarshicollege.co.in'],
     )
     email.fail_silently = False
     email.send()
