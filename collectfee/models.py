@@ -90,7 +90,7 @@ class ApplicationForm(models.Model):
     email = models.EmailField(null=True, blank=True)
     motherName = models.CharField(max_length=100, null=True, blank=True)
     fatherName = models.CharField(max_length=100, null=True, blank=True)
-    annualIncome = models.IntegerField(null=True, blank=True)
+    annualIncome = models.CharField(max_length=100, null=True, blank=True)
     anyotheruni= models.CharField(max_length=100, null=True, blank=True)
     #Address
     address = models.CharField(max_length=100, null=True, blank=True)
