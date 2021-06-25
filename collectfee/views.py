@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 import stripe
 from rest_framework.response import Response
@@ -158,12 +159,159 @@ def handle_payment_success(request):
 
 
 
+
+
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+
+def sendmail(request,pk):
+    application = ApplicationForm.objects.get(id=pk)
+    firstName = application.firstName
+    middleName = application.middleName
+    lastName = application.lastName
+    aadhaar = application.aadhaar
+    martial = application.martial
+    mobile = application.mobile
+    motherName = application.motherName
+    fatherName = application.fatherName
+    annualIncome = application.annualIncome
+    anyotheruni = application.anyotheruni
+    address = application.address
+    pincode = application.pincode
+    category = application.category
+    minority = application.minority
+    state = application.state
+    city = application.city
+    dob = application.dob
+    nationality = application.nationality
+    payingguest = application.payingguest
+    transport = application.transport
+    elective1 = application.elective1
+    elective2 = application.elective2
+    elective3 = application.elective3
+    preference1 = application.preference1
+    preference2 = application.preference2
+    preference3 = application.preference3
+    employment = application.employment
+    fullmarks1 = application.fullmarks1
+    fullmarks2 = application.fullmarks2
+    fullmarks3 = application.fullmarks3
+    fullmarks4 = application.fullmarks4
+    fullmarks5 = application.fullmarks5
+    fullmarks6 = application.fullmarks6
+    markObtain1 = application.markObtain1
+    markObtain2 = application.markObtain2
+    markObtain3 = application.markObtain3
+    markObtain4 = application.markObtain4
+    markObtain5 = application.markObtain5
+    markObtain6 = application.markObtain6
+    grade1 = application.grade1
+    grade2 = application.grade2
+    grade3 = application.grade3
+    grade4 = application.grade4
+    grade5 = application.grade5
+    grade6 = application.grade6
+    percentage = application.percentage
+    aadhaar_img = application.aadhaar_img
+    marksheet_img = application.marksheet_img
+    profile_img = application.profile_img
+    Email = application.email
+    data = {
+        'firstName': firstName,
+        'lastName': lastName,
+        'middleName': middleName,
+        'aadhaar': aadhaar,
+        'martial': martial,
+        'mobile':mobile,
+        'Email' : Email,
+        'motherName': motherName,
+        'fatherName': fatherName,
+        'annualIncome': annualIncome,
+        'anyotheruni': anyotheruni,
+        'address': address,
+        'pincode': pincode,
+        'category': category,
+        'minority': minority,
+        'state': state,
+        'city': city,
+        'dob': dob,
+        'nationality': nationality,
+        'payingguest' : payingguest,
+        'transport' : transport,
+        'elective1': elective1,
+        'elective2': elective2,
+        'elective3': elective3,
+        'preference1': preference1,
+        'preference2': preference2,
+        'preference3': preference3,
+        'employment':employment,
+        'fullmarks1': fullmarks1,
+        'fullmarks2': fullmarks2,
+        'fullmarks3': fullmarks3,
+        'fullmarks4': fullmarks4,
+        'fullmarks5': fullmarks5,
+        'fullmarks6': fullmarks6,
+        'markObtain1': markObtain1,
+        'markObtain2': markObtain2,
+        'markObtain3': markObtain3,
+        'markObtain4': markObtain4,
+        'markObtain5': markObtain5,
+        'markObtain6': markObtain6,
+        'grade1': grade1,
+        'grade2': grade2,
+        'grade3': grade3,
+        'grade4': grade4,
+        'grade5': grade5,
+        'grade6': grade6,
+        'percentage': percentage,
+        'aadhaar_img': aadhaar_img,
+        'marksheet_img': marksheet_img,
+        'profile_img': profile_img,
+
+
+
+    }
+    template = render_to_string('email.html',data)
+    email = EmailMessage(
+        'New Application for Admission',
+        template,
+        settings.EMAIL_HOST_USER,
+        ['nikhilesh.debbarma062@gmail.com'],
+    )
+    email.fail_silently = False
+    email.send()
+    application.email_sent_status = True
+    application.save()
+    return render(request, 'emailsent.html')
+
+
+
+
+def applications(request):
+    applications = ApplicationForm.objects.all()
+    context = {
+        'applications': applications
+    }
+    return render(request, 'applications.html', context)
+
+
+def singleApplication(request,pk):
+    singleapplication = ApplicationForm.objects.get(id=pk)
+    context = {
+        'singleapplication': singleapplication
+    }
+    return render(request, 'singleapplication.html', context)
+
+
 def home(request):
     payments = Order.objects.all()
+  
     context = {
         'payments': payments
     }
     return render(request, 'index.html', context)
+
 
 
 # from firebase import firebase
@@ -197,8 +345,9 @@ def api_create_application(request):
     #     comment = {'invalid': 'Invalid Methode'}
     #     return Response(comment, status=status.HTTP_400_BAD_REQUEST)
     # else:
-    #     FirstName = request.data.get('firstName')
-    #     MiddleName = request.data.get('middleName')
+    #     serilizer = ApplicationSerializer(data=request.data)
+    #     FirstName = serializer.data.get('firstName')
+    #     MiddleName = serializer.get('middleName')
     #     LastName = request.data.get('lastName')
     #     Aadhaar = request.data.get('aadhaar')
     #     Martial = request.data.get('martial')
@@ -328,3 +477,4 @@ def viewApplications(request):
     application = ApplicationForm.objects.all()
     serializer = ApplicationSerializer(application, many=True)
     return Response(serializer.data)
+

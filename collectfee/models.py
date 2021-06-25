@@ -1,5 +1,5 @@
 from django.db import models
-
+from PIL import Image
 # Create your models here.
 class Order(models.Model):
     order_product = models.CharField(max_length=100)
@@ -140,6 +140,15 @@ class ApplicationForm(models.Model):
     grade5 = models.CharField(max_length=100, null=True, blank=True)
     grade6 = models.CharField(max_length=100, null=True, blank=True)
     percentage = models.FloatField(null=True, blank=True)
+    aadhaar_img = models.URLField(null=True, blank=True)
+    marksheet_img = models.URLField(null=True, blank=True)
+    profile_img = models.URLField(null=True, blank=True)
+    email_sent_status = models.BooleanField(null=True, blank=True, default=False)
+
+    # aadhaar_img = models.ImageField(upload_to='uploads/aadhaar/', null=True, default=None)
+    # marksheet_img = models.ImageField(upload_to='uploads/marksheet/', null=True, default=None)
+    # profile_img = models.ImageField(upload_to='uploads/profile/', null=True, default=None)
+
 
     
 
