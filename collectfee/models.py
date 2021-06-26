@@ -139,6 +139,15 @@ class ApplicationForm(models.Model):
     grade4 = models.CharField(max_length=100, null=True, blank=True)
     grade5 = models.CharField(max_length=100, null=True, blank=True)
     grade6 = models.CharField(max_length=100, null=True, blank=True)
+
+    result1 = models.CharField(max_length=100, null=True, blank=True)
+    result2 = models.CharField(max_length=100, null=True, blank=True)
+    result3 = models.CharField(max_length=100, null=True, blank=True)
+    result4 = models.CharField(max_length=100, null=True, blank=True)
+    result5 = models.CharField(max_length=100, null=True, blank=True)
+    result6 = models.CharField(max_length=100, null=True, blank=True)
+
+
     percentage = models.FloatField(null=True, blank=True)
     aadhaar_img = models.URLField(null=True, blank=True)
     marksheet_img = models.URLField(null=True, blank=True)
