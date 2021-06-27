@@ -212,11 +212,21 @@ def sendmail(request,pk):
     grade4 = application.grade4
     grade5 = application.grade5
     grade6 = application.grade6
+    result1 = application.result1
+    result2 = application.result2
+    result3 = application.result3
+    result4 = application.result4
+    result5 = application.result5
+    result6 = application.result6
     percentage = application.percentage
     aadhaar_img = application.aadhaar_img
     marksheet_img = application.marksheet_img
     profile_img = application.profile_img
     Email = application.email
+    pwd = application.pwd
+    board12 = application.board12
+    agreecollege = application.agreecollege
+    agreepay = application.agreepay
     data = {
         'firstName': firstName,
         'lastName': lastName,
@@ -264,11 +274,20 @@ def sendmail(request,pk):
         'grade4': grade4,
         'grade5': grade5,
         'grade6': grade6,
+        'result1': result1,
+        'result2': result2,
+        'result3': result3,
+        'result4': result4,
+        'result5': result5,
+        'result6': result6,
         'percentage': percentage,
         'aadhaar_img': aadhaar_img,
         'marksheet_img': marksheet_img,
         'profile_img': profile_img,
-
+        'pwd': pwd,
+        'board12': board12,
+        'agreepay': agreepay,
+        'agreecollege': agreecollege,
 
 
     }

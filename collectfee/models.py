@@ -153,6 +153,10 @@ class ApplicationForm(models.Model):
     marksheet_img = models.URLField(null=True, blank=True)
     profile_img = models.URLField(null=True, blank=True)
     email_sent_status = models.BooleanField(null=True, blank=True, default=False)
+    pwd = models.CharField(max_length=100, blank=True, null=True)
+    board12 = models.CharField(max_length=100, blank=True, null=True)
+    agreecollege = models.CharField(max_length=100, blank=True, null=True)
+    agreepay = models.CharField(max_length=100, blank=True, null=True)
 
     # aadhaar_img = models.ImageField(upload_to='uploads/aadhaar/', null=True, default=None)
     # marksheet_img = models.ImageField(upload_to='uploads/marksheet/', null=True, default=None)
